@@ -1,5 +1,6 @@
 package com.epam.count_words
 
+import com.epam.andrey.Point
 import org.apache.spark.rdd.RDD
 
 /**

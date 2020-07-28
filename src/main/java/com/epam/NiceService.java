@@ -2,6 +2,7 @@ package com.epam;
 
 import org.apache.spark.api.java.JavaRDD;
 
+
 /**
  * @author Evgeny Borisov
  */
