@@ -58,7 +58,8 @@ public class ProfileDataFrameServiceJava implements ProfileDataFrameService
     }
 
     private Dataset<Row> getProfilesWithSalary(){
-        return profiles.withColumn("salary", col("age").multiply(size(col("keywords"))).multiply(10));
+//        return profiles.withColumn("salary", col("age").multiply(size(col("keywords"))).multiply(10));
+        return profiles.withColumn("salary", size(col("keywords")).multiply(when(col("age").leq(30), 5).otherwise(column("age"))));
     }
 
     @Override

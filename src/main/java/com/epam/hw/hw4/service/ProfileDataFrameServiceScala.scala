@@ -34,7 +34,9 @@ class ProfileDataFrameServiceScala(sqlContext: SQLContext) extends ProfileDataFr
   }
 
   private def getProfilesWithSalary(): Unit = {
-    profilesWithSalary = profiles.withColumn("salary", col("age").*(size(col("keywords"))).*(10))
+//    profilesWithSalary = profiles.withColumn("salary", col("age").*(size(col("keywords"))).*(10))
+    profilesWithSalary = profiles.withColumn("salary", size(col("keywords")).*(when(col("age").<=(30), 5).otherwise(column("age"))));
+
   }
 
   override def lowestPaidWithMostPopularTechnology(): Unit = {
