@@ -12,6 +12,8 @@ import org.springframework.context.annotation.Profile;
 
 import java.util.List;
 
+import static com.epam.hw.hw4.Profiles.DEV;
+import static com.epam.hw.hw4.Profiles.PROD;
 import static java.util.Arrays.asList;
 
 /**
@@ -20,9 +22,6 @@ import static java.util.Arrays.asList;
 @Configuration
 public class SparkConfig
 {
-
-    public static final String PROD = "PROD";
-    public static final String DEV = "DEV";
 
     @Bean
     public SQLContext sqlContext(SparkContext sc){

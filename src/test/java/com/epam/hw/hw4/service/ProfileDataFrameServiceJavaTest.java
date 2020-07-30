@@ -8,7 +8,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static com.epam.ilya.conf.SparkConfig.DEV;
+import static com.epam.hw.hw4.Profiles.DEV;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = MainConfHW4.class)
