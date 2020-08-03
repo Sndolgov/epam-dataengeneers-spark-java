@@ -1,5 +1,6 @@
 package com.epam.hw.hw4.conf;
 
+
 import org.apache.spark.SparkConf;
 import org.apache.spark.SparkContext;
 import org.apache.spark.api.java.JavaSparkContext;

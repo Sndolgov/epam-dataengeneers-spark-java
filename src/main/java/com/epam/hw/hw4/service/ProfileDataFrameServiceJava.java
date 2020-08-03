@@ -1,14 +1,14 @@
 package com.epam.hw.hw4.service;
 
+import org.apache.spark.SparkConf;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.Arrays;
 
 import static org.apache.spark.sql.functions.*;
@@ -16,8 +16,14 @@ import static org.apache.spark.sql.functions.*;
 @Service
 public class ProfileDataFrameServiceJava implements ProfileDataFrameService
 {
+
+
     @Autowired
     private SQLContext sqlContext;
+
+    @Autowired
+    private SparkConf sparkConf;
+
 
     @Value("${profile.file.path:data/profiles.json}")
     private String filePath;
@@ -25,8 +31,8 @@ public class ProfileDataFrameServiceJava implements ProfileDataFrameService
     private Dataset<Row> profiles;
     private Dataset<Row> profilesWithSalary;
 
-    @EventListener
-    public void setDataSet(ContextRefreshedEvent event)
+    @PostConstruct
+    public void setDataSet()
     {
         profiles = sqlContext.read().json(filePath);
     }

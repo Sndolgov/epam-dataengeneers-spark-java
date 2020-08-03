@@ -47,7 +47,7 @@ class ProfileDataFrameServiceScala(sqlContext: SQLContext) extends ProfileDataFr
       .sort(desc("count"))
       .first
 
-    profilesWithSalary.filter(col("salary")<(1200))
+    profilesWithSalary.filter(col("salary") < (1200))
       .filter(array_contains(col("keywords"), mostPopularTechnology.get(0)))
       .show()
   }
