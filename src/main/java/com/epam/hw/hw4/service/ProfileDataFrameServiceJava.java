@@ -1,6 +1,5 @@
 package com.epam.hw.hw4.service;
 
-import org.apache.spark.SparkConf;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
@@ -20,10 +19,6 @@ public class ProfileDataFrameServiceJava implements ProfileDataFrameService
 
     @Autowired
     private SQLContext sqlContext;
-
-    @Autowired
-    private SparkConf sparkConf;
-
 
     @Value("${profile.file.path:data/profiles.json}")
     private String filePath;

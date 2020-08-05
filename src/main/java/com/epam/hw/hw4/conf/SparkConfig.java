@@ -1,27 +1,13 @@
 package com.epam.hw.hw4.conf;
 
 
-import org.apache.spark.SparkConf;
-import org.apache.spark.SparkContext;
-import org.apache.spark.api.java.JavaSparkContext;
-import org.apache.spark.broadcast.Broadcast;
-import org.apache.spark.sql.SQLContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Profile;
-
-import java.util.List;
-
-import static java.util.Arrays.asList;
-
 /**
  * @author Evgeny Borisov
  */
-@Configuration
+//@Configuration
 public class SparkConfig
 {
-
+/*
     public static final String PROD = "PROD";
     public static final String DEV = "DEV";
 
@@ -57,7 +43,7 @@ public class SparkConfig
     @Bean
     public SparkConf sparkConfDev() {
         return new SparkConf().setAppName("words").setMaster("local[*]");
-    }
+    }*/
 }
 
 

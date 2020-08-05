@@ -26,10 +26,10 @@ public class ProfileDataFrameServiceJavaTest
     public void mainJava()
     {
         serviceJava.printContent();
-        serviceJava.printSchema();
-        serviceJava.printColumnTypes();
-        serviceJava.addColumnSalaryAndPrint();
-        serviceJava.lowestPaidWithMostPopularTechnology();
+//        serviceJava.printSchema();
+//        serviceJava.printColumnTypes();
+//        serviceJava.addColumnSalaryAndPrint();
+//        serviceJava.lowestPaidWithMostPopularTechnology();
 
     }
     @Test

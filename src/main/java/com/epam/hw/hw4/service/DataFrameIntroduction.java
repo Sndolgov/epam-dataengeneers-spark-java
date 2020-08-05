@@ -7,7 +7,6 @@ import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
 
-import java.io.File;
 import java.util.Arrays;
 
 public class DataFrameIntroduction
@@ -35,8 +34,6 @@ public class DataFrameIntroduction
 
     public static void main(String[] args)
     {
-        File file = new File("data/profiles.json");
-        System.out.println(file.exists());
         DataFrameIntroduction dataFrameIntroduction = new DataFrameIntroduction("data/profiles.json");
         dataFrameIntroduction.printContent();
         dataFrameIntroduction.printSchema();
