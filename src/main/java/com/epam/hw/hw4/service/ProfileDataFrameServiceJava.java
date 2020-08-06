@@ -1,5 +1,6 @@
 package com.epam.hw.hw4.service;
 
+import org.apache.spark.SparkContext;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SQLContext;
@@ -19,6 +20,12 @@ public class ProfileDataFrameServiceJava implements ProfileDataFrameService
 
     @Autowired
     private SQLContext sqlContext;
+
+    @Autowired
+    private SparkContext sparkContext;
+
+//    @Autowired
+//    private StreamingContext streamingContext;
 
     @Value("${profile.file.path:data/profiles.json}")
     private String filePath;
@@ -78,6 +85,5 @@ public class ProfileDataFrameServiceJava implements ProfileDataFrameService
                 .filter(col("salary").lt(1200))
                 .filter(array_contains(col("keywords"), mostPopularTechnology.get(0)))
                 .show();
-
     }
 }

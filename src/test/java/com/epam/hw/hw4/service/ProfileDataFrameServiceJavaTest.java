@@ -1,6 +1,7 @@
 package com.epam.hw.hw4.service;
 
 import com.epam.hw.hw4.MainConfHW4;
+import org.apache.spark.streaming.StreamingContext;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,11 @@ public class ProfileDataFrameServiceJavaTest
     @Autowired
     private ProfileDataFrameServiceScala serviceScala;
 
+    @Autowired
+    private StreamingContext streamingContext;
+
+
+
     @Test
     public void mainJava()
     {
@@ -30,6 +36,7 @@ public class ProfileDataFrameServiceJavaTest
 //        serviceJava.printColumnTypes();
 //        serviceJava.addColumnSalaryAndPrint();
 //        serviceJava.lowestPaidWithMostPopularTechnology();
+
 
     }
     @Test
