@@ -7,6 +7,7 @@ import org.apache.spark.sql.SparkSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 @Service
 public class DataConsumerKafkaJava
 {
@@ -14,7 +15,7 @@ public class DataConsumerKafkaJava
     private SparkSession sparkSession;
 
     @SneakyThrows
-    public void getData(){
+    public void readData(){
      /*   Map<String, Object> kafkaParams = new HashMap<>();
         kafkaParams.put("bootstrap.servers", "localhost:9092,anotherhost:9092");
         kafkaParams.put("key.deserializer", StringDeserializer.class);
@@ -39,18 +40,13 @@ public class DataConsumerKafkaJava
                 .option("subscribe", "bsh18_03")
                 .load();
 
-//        df.select(from_json())
-
-
-
-//        StreamingQuery consoleOutput = df.writeStream()
-//                .outputMode("append")
-//                .format("console")
-//                .start();
+//        StructType schema = StructType(Seq(
+//                StructField("clientId", IntegerType),
+//                StructField("productId", IntegerType),
+//                StructField("cashboxId", IntegerType)
+//        ));
 //
-//
-//        consoleOutput.awaitTermination();
-
+//        df.select(from_json(col("value").cast(StringType), schema).as("data")).show();
 
     }
 }

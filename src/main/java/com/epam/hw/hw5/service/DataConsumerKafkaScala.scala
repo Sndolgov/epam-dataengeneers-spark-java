@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service
 
 
 @Service
-class DataConsumerKafkaScala(sparkSession: SparkSession) {
+class DataConsumerKafkaScala(sparkSession: SparkSession, dataFetcher: DataFetcher) {
   def getData():Unit={
     val df = sparkSession.read.format("kafka")
       .option("kafka.bootstrap.servers", "localhost:9092")
@@ -20,7 +20,18 @@ class DataConsumerKafkaScala(sparkSession: SparkSession) {
       StructField("cashboxId", IntegerType)
     ))
 
-    df.select(from_json(col("value").cast(StringType), schema).as("data")).show();
+    val oneColumn = df.select(from_json(col("value").cast(StringType), schema).as("data"))
+    oneColumn.printSchema();
+
+//    oneColumn.select(
+//      col("data") +: (0 until 2).map(i => col("data")(i).alias(s"col$i")): _*
+//    ).show()
+
+//    oneColumn.select(col("data").getItem("clientId").as("x")).show();
+
+    oneColumn.withColumn("clientId", col  ("data").getItem("clientId")).show()
+
+
 
   }
 }
