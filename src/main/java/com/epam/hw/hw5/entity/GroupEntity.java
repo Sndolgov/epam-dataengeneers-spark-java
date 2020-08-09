@@ -1,14 +1,16 @@
 package com.epam.hw.hw5.entity;
 
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "group")
-public class GroupEntity
+public class GroupEntity implements Serializable
 {
     private int groupId;
     private String keyword;

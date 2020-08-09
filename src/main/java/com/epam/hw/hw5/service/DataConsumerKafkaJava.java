@@ -1,11 +1,16 @@
 package com.epam.hw.hw5.service;
 
+import com.epam.hw.hw5.entity.CustomerEntity;
 import lombok.SneakyThrows;
+import org.apache.spark.api.java.JavaSparkContext;
+import org.apache.spark.broadcast.Broadcast;
 import org.apache.spark.sql.Dataset;
 import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 
 @Service
@@ -14,8 +19,18 @@ public class DataConsumerKafkaJava
     @Autowired
     private SparkSession sparkSession;
 
+    @Autowired
+    private DataFetcher dataFetcher;
+
+    @Autowired
+    private JavaSparkContext javaSparkContext;
+
     @SneakyThrows
     public void readData(){
+
+        Broadcast<Map<Integer, CustomerEntity>> broadcast = javaSparkContext.broadcast(dataFetcher.getCustomers());
+        System.out.println(broadcast);
+
      /*   Map<String, Object> kafkaParams = new HashMap<>();
         kafkaParams.put("bootstrap.servers", "localhost:9092,anotherhost:9092");
         kafkaParams.put("key.deserializer", StringDeserializer.class);

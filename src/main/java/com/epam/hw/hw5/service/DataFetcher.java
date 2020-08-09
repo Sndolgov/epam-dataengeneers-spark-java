@@ -9,7 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class DataFetcher
@@ -21,14 +22,14 @@ public class DataFetcher
     private ProductJpa productJpa;
 
     @Getter
-    List<CustomerEntity> customers;
+    Map<Integer, CustomerEntity> customers;
     @Getter
-    List<ProductEntity> products;
+    Map<Integer, ProductEntity> products;
 
     @PostConstruct
     private void fetchData(){
-        customers = customerJpa.findAll();
-        products = productJpa.findAll();
+        customers =customerJpa.findAll().stream().collect(Collectors.toMap(CustomerEntity::getCustomerId, c->c));
+        products =productJpa.findAll().stream().collect(Collectors.toMap(ProductEntity::getProductId, c->c));
     }
 
 }

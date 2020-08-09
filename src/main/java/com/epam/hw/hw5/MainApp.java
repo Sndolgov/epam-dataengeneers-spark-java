@@ -14,8 +14,8 @@ public class MainApp
         ConfigurableApplicationContext context = SpringApplication.run(MainApp.class);
         DataConsumerKafkaJava kafkaJava = context.getBean(DataConsumerKafkaJava.class);
         DataConsumerKafkaScala kafkaScala = context.getBean(DataConsumerKafkaScala.class);
-//        kafkaJava.getData();
-        kafkaScala.getData();
+//        kafkaJava.readData();
+        kafkaScala.readData();
 
 
 
