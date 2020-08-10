@@ -1,0 +1,41 @@
+product_id,name,price,group_id
+1,Allure,10,1
+2,Cosmopolitan,12,1
+3,Elle.,11,1
+4,Glamour,9,1
+5,Coca-Cola Company,7,2
+6,Pepsi Co.,8,2
+7,Keurig Dr Pepper,6,2
+8,Hamoud Boualem,7,2
+9,Acetaminophen,15,3
+10,Adderall,18,3
+11,Amitriptyline,21,3
+12,Amlodipine,24,3
+13,Herbal Essences,11,4
+14,Suave,12,4
+15,Garnier,14,4
+16,Pantene,13,4
+17,Bacardi,32,6
+18,Smirnoff,35,6
+19,Jack Daniel's,39,6
+20,Captain Morgan,29,6
+21,Caribou Coffee,15,7
+22,Dunkin Donuts,18,7
+23,Folgers,17,7
+24,Gloria Jean's,16,7
+25,Broccoli,2,8
+26,Cabbage,1,8
+27,Carrot,3,8
+28,Cucumber,4,8
+29,Apple,1,9
+30,Apricot,4,9
+31,Avocado,3,9
+32,Banana,2,9
+33,Football helmet,50,10
+34,Jock strap,55,10
+35,Mouthguards,57,10
+36,Shin pads,60,10
+37,Treasurer,22,5
+38,Sobranie,23,5
+39,Vogue,21,5
+40,Parliament,18,5
