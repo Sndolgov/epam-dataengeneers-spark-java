@@ -1,8 +1,7 @@
 package com.epam.hw.hw5.service
 
-import java.util.Map
+import java.util
 
-import com.epam.hw.hw5.entity.CustomerEntity
 import com.epam.hw.hw5.service.DataConsumer._
 import org.apache.spark.SparkContext
 import org.apache.spark.sql.SparkSession
@@ -35,52 +34,35 @@ class DataConsumerKafkaScala(@transient sparkSession: SparkSession, @transient d
     oneColumn.show()
 
 
-    oneColumn.withColumn(CUSTOMER_ID, getMapValue(customers.value, CUSTOMER_ID)(col("data").getItem("clientId"))).show
-
-
-    //        oneColumn.withColumn("clientName", customers.value.get(col("data").getItem(0))).show()
-    //        oneColumn.withColumn("clientName", lit(customers.value.get(1).getName)).show()
-    //        val name = customers.value.get(1).getName;
-    //        oneColumn.withColumn("clientName", lit(customers.value.get(col("data").getItem(0)).getName)).show()
-
-    //    val df = sqlContext.createDataFrame(Seq(
-    //      (1, "a"), (2, "b"), (3, "c")
-    //    )).toDF("id", "key")
-
-
-    //    val lookupMap = Map("a" -> cusMap.get(1), "b" -> cusMap.get(2), "c" -> cusMap.get(3))
-    //    val lookupMap = Map(1 -> cusMap.get(1), 2 -> cusMap.get(2), 3 -> cusMap.get(3))
-    //    val lookupMap = Map(1 -> cusMap.get(1), 3 -> cusMap.get(3))
-    val lookupMap = customers.value;
-
-    //    df.withColumn("value", getMapValue(lookupMap)(col("id"))).show
-
+    oneColumn
+      .withColumn(CUSTOMER_ID, getMapValueInt(customers.value, CUSTOMER_ID)(col("data").getItem("clientId")))
+      .withColumn(CUSTOMER_NAME, getMapValueString(customers.value, NAME)(col("data").getItem("clientId")))
+      .show
   }
 
-  def getMapValue(m: Map[Integer, CustomerEntity], fieldName: String) = udf {
+  def getMapValueInt[T](m: util.Map[Integer, T], fieldName: String) = udf {
     (key: Int) => {
-      val value = m.get(key)
-      getFieldValue(value, fieldName)
+      getFieldValue(m.get(key), fieldName, classOf[Integer])
     }
   }
 
-  def getFieldValue(value: CustomerEntity, fieldName: String): Integer = {
-    if (value == null)
-      null
-    else {
-      val classType = classOf[CustomerEntity]
-      val fields = classType.getDeclaredFields;
-      for (field <- fields) {
-        if (field.getName == fieldName) {
-          field.setAccessible(true)
-          if (field.get(value).getClass == classOf[Integer]) {
-            val fieldValue: Integer = field.get(value)
-            return fieldValue;
-          }
-        }
-      }
-      null
+  def getMapValueString[T](m: util.Map[Integer, T], fieldName: String) = udf {
+    (key: Int) => {
+      getFieldValue(m.get(key), fieldName, classOf[String])
     }
+  }
+
+  def getFieldValue[T, E](value: T, fieldName: String, returnClass: Class[E]): E = {
+
+    val classType = value.getClass
+    val fields = classType.getDeclaredFields;
+    for (field <- fields) {
+      if (field.getName == fieldName) {
+        field.setAccessible(true)
+        return field.get(value).asInstanceOf[E]
+      }
+    }
+    ???
   }
 
 }

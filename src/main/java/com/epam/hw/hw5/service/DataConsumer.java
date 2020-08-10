@@ -4,8 +4,8 @@ public interface DataConsumer
 {
     String CUSTOMER_ID = "customerId";
     String NAME = "name";
-    String NAME_CUSTOMER = "nameCustomer";
-    String NAME_PRODUCT = "nameProduct";
+    String CUSTOMER_NAME = "customerName";
+    String PRODUCT_NAME = "productName";
     String GENDER = "gender";
     String AGE = "age";
     String BIRTH_DATE = "birthDate";
