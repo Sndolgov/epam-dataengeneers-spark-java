@@ -3,6 +3,7 @@ package com.epam.hw.hw5.service;
 public interface DataConsumer
 {
     String CUSTOMER_ID = "customerId";
+    String PRODUCT_ID = "productId";
     String NAME = "name";
     String CUSTOMER_NAME = "customerName";
     String PRODUCT_NAME = "productName";

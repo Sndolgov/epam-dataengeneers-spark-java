@@ -27,9 +27,9 @@ public class DataFetcher
     Map<Integer, ProductEntity> products;
 
     @PostConstruct
-    private void fetchData(){
+    void fetchData(){
         customers =customerJpa.findAll().stream().collect(Collectors.toMap(CustomerEntity::getCustomerId, c->c));
-        products =productJpa.findAll().stream().collect(Collectors.toMap(ProductEntity::getProductId, c->c));
+        products =productJpa.findAll().stream().peek(p-> p.setKeyword(p.getProductGroup().getKeyword())).collect(Collectors.toMap(ProductEntity::getProductId, c->c));
     }
 
 }

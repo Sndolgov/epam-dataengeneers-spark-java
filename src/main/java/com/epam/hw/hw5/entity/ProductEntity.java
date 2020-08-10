@@ -3,11 +3,11 @@ package com.epam.hw.hw5.entity;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 
 @Entity
@@ -17,7 +17,8 @@ public class ProductEntity implements Serializable
     private int productId;
     private String name;
     private int price;
-    private GroupEntity group;
+    private ProductGroupEntity productGroup;
+    private String keyword;
 
     @Id
     @Column(name = "product_id")
@@ -55,6 +56,18 @@ public class ProductEntity implements Serializable
         this.price = price;
     }
 
+
+    @Transient
+    public String getKeyword()
+    {
+        return keyword;
+    }
+
+    public void setKeyword(String keyword)
+    {
+        this.keyword = keyword;
+    }
+
     @Override
     public boolean equals(Object o)
     {
@@ -79,15 +92,15 @@ public class ProductEntity implements Serializable
         return result;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "group_id", referencedColumnName = "group_id", nullable = false)
-    public GroupEntity getGroup()
+    public ProductGroupEntity getProductGroup()
     {
-        return group;
+        return productGroup;
     }
 
-    public void setGroup(GroupEntity groupByGroupId)
+    public void setProductGroup(ProductGroupEntity productGroupByGroupId)
     {
-        this.group = groupByGroupId;
+        this.productGroup = productGroupByGroupId;
     }
 }

@@ -37,6 +37,11 @@ class DataConsumerKafkaScala(@transient sparkSession: SparkSession, @transient d
     oneColumn
       .withColumn(CUSTOMER_ID, getMapValueInt(customers.value, CUSTOMER_ID)(col("data").getItem("clientId")))
       .withColumn(CUSTOMER_NAME, getMapValueString(customers.value, NAME)(col("data").getItem("clientId")))
+      .withColumn(AGE, getMapValueInt(customers.value, AGE)(col("data").getItem("clientId")))
+      .withColumn(PRODUCT_ID, getMapValueInt(products.value, PRODUCT_ID)(col("data").getItem(PRODUCT_ID)))
+      .withColumn(PRODUCT_NAME, getMapValueString(products.value, NAME)(col("data").getItem(PRODUCT_ID)))
+      .withColumn(PRICE, getMapValueInt(products.value, PRICE)(col("data").getItem(PRODUCT_ID)))
+      .withColumn(KEYWORD, getMapValueString(products.value, KEYWORD)(col("data").getItem(PRODUCT_ID)))
       .show
   }
 

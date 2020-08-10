@@ -5,8 +5,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 @Entity
 @Table(name = "customer")
@@ -16,6 +18,7 @@ public class CustomerEntity implements Serializable
     private String name;
     private LocalDate birthDate;
     private String gender;
+    private Integer age;
 
     @Id
     @Column(name = "customer_id")
@@ -51,7 +54,9 @@ public class CustomerEntity implements Serializable
     public void setBirthDate(LocalDate birthDate)
     {
         this.birthDate = birthDate;
+        this.age = (int) ChronoUnit.YEARS.between(birthDate, LocalDate.now());
     }
+
 
     @Basic
     @Column(name = "gender")
@@ -63,6 +68,19 @@ public class CustomerEntity implements Serializable
     public void setGender(String gender)
     {
         this.gender = gender;
+    }
+
+
+    @Transient
+    public Integer getAge()
+    {
+        return age;
+    }
+
+
+    public void setAge(Integer age)
+    {
+        this.age = age;
     }
 
     @Override

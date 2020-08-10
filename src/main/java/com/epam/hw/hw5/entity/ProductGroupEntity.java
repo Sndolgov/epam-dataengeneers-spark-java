@@ -1,6 +1,5 @@
 package com.epam.hw.hw5.entity;
 
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +8,8 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "group")
-public class GroupEntity implements Serializable
+@Table(name = "product_group")
+public class ProductGroupEntity implements Serializable
 {
     private int groupId;
     private String keyword;
@@ -45,7 +44,7 @@ public class GroupEntity implements Serializable
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        GroupEntity that = (GroupEntity) o;
+        ProductGroupEntity that = (ProductGroupEntity) o;
 
         if (groupId != that.groupId) return false;
         if (keyword != null ? !keyword.equals(that.keyword) : that.keyword != null) return false;
@@ -60,4 +59,5 @@ public class GroupEntity implements Serializable
         result = 31 * result + (keyword != null ? keyword.hashCode() : 0);
         return result;
     }
+
 }

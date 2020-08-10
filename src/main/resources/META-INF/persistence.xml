@@ -5,6 +5,9 @@
         <class>com.epam.hw.hw5.entity.CustomerEntity</class>
         <class>com.epam.hw.hw5.entity.GroupEntity</class>
         <class>com.epam.hw.hw5.entity.ProductEntity</class>
+        <class>com.epam.hw.hw5.entity.UserEntity</class>
+        <class>com.epam.hw.hw5.entity.UserPhoneEntity</class>
+        <class>com.epam.hw.hw5.entity.ProductGroupEntity</class>
         <properties>
             <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306"/>
             <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
